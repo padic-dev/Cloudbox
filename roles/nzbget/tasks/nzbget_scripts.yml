@@ -1,7 +1,8 @@
 #########################################################################
 # Title:         Cloudbox: NZBGet - Scripts Task                        #
-# Author(s):     Desimaniac                                             #
+# Author(s):     Desimaniac, padic-dev                                  #
 # URL:           https://github.com/cloudbox/cloudbox                   #
+# Fork:          https://github.com/padic-dev/cloudbox                  #
 # --                                                                    #
 #         Part of the Cloudbox project: https://cloudbox.rocks          #
 #########################################################################
@@ -27,6 +28,12 @@
     - "https://raw.githubusercontent.com/clinton-hall/GetScripts/master/flatten.py"
     - "https://raw.githubusercontent.com/clinton-hall/GetScripts/master/DeleteSamples.py"
     - "https://raw.githubusercontent.com/Prinz23/nzbget-pp-reverse/master/reverse_name.py"
+    - "https://raw.githubusercontent.com/padic-dev/nzbget/master/nzbpp/FakeDetector.py"
+    - "https://raw.githubusercontent.com/padic-dev/nzbget/master/nzbpp/NZBGetPostProcess.py"
+    - "https://raw.githubusercontent.com/padic-dev/nzbget/master/nzbpp/PasswordDetector.py"
+    - "https://raw.githubusercontent.com/padic-dev/nzbget/master/nzbpp/ResetDateTime.py"
+    - "https://raw.githubusercontent.com/padic-dev/nzbget/master/nzbpp/SafeRename.py"
+    - "https://raw.githubusercontent.com/padic-dev/nzbget/master/nzbpp/VideoSort.py"
   ignore_errors: yes
 
 - name: Download unzip.py script

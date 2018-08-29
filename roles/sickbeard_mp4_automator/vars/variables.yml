@@ -1,0 +1,14 @@
+#########################################################################
+# Title:         Cloudbox: sickbeard_mp4_automator - variables          #
+# Author(s):     padic-dev                                              #
+# URL:           https://github.com/cloudbox/cloudbox                   #
+# Fork:          https://github.com/padic-dev/cloudbox                  #
+# --                                                                    #
+#         Part of the Cloudbox project: https://cloudbox.rocks          #
+#########################################################################
+#                   GNU General Public License v3.0                     #
+#########################################################################
+---
+default_volume: "/opt/sickbeard_mp4_automator:/sickbeard_mp4_automator"
+git_repo: "https://github.com/padic-dev/sickbeard_mp4_automator"
+app_path: "/opt/sickbeard_mp4_automator"

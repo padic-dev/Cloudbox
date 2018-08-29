@@ -1,0 +1,49 @@
+#########################################################################
+# Title:         Cloudbox: sickbeard_mp4_automator                      #
+# Author(s):     padic-dev                                              #
+# URL:           https://github.com/cloudbox/cloudbox                   #
+# Fork:          https://github.com/padic-dev/cloudbox                  #
+# --                                                                    #
+#         Part of the Cloudbox project: https://cloudbox.rocks          #
+#########################################################################
+#                   GNU General Public License v3.0                     #
+#########################################################################
+---
+- set_fact:
+    - git_repo: "https://github.com/padic-dev/sickbeard_mp4_automator"
+    - app_path: "/opt/sickbeard_mp4_automator"
+
+- name: Check app folder exists
+  stat:
+    path: {{ app_path }}
+  register: appfolder
+
+- name: Check profiles folder exists
+  stat:
+    path: {{ app_path }}/profiles
+  register: profilesfolder
+
+- name: Cloning git repo
+  git:
+    repo: "{{ git_repo }}"
+    dest: "{{ app_path }}"
+  when: not (appfolder.stat.exists)
+
+- name: Import autoProcess.ini
+  copy:
+    src: sbm4a/autoProcess*.ini
+    dest: {{ app_path }}/
+    mode: 0775
+    owner: 1000
+    group: 1000
+  when: (appfolder.stat.exists)
+
+- name: Import profiles
+  copy:
+    src: sbm4a/profiles/*.prof
+    dest: {{ app_path }}/profiles
+    mode: 0775
+    owner: 1000
+    group: 1000
+  when: (appfolder.stat.exists) and not (profilesfolder.stat.exists)
+  

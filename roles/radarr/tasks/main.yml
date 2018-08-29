@@ -1,8 +1,9 @@
 #########################################################################
 # Title:         Cloudbox: Radarr Role                                  #
-# Author(s):     L3uddz, Desimaniac                                     #
+# Author(s):     L3uddz, Desimaniac, padic-dev                          #
 # URL:           https://github.com/cloudbox/cloudbox                   #
-# Docker Image:  hotio/suitarr                                          #
+# Fork:          https://github.com/padic-dev/cloudbox                  #
+# Docker Image:  padic/radarr                                           #
 # --                                                                    #
 #         Part of the Cloudbox project: https://cloudbox.rocks          #
 #########################################################################
@@ -20,7 +21,7 @@
     name: radarr
     state: absent
 
-# START - Suitarr Migration Tasks
+# START - Migration Tasks
 - name: Check folder exists
   stat:
     path: /opt/radarr
@@ -50,7 +51,7 @@
     mv /opt/radarr/Radarr /opt/radarr/app
     chown -R {{user}}:{{user}} /opt/radarr
   when: (folder.stat.exists) and (subfolder1.stat.exists) and (not subfolder2.stat.exists)
-# END - Suitarr Migration Tasks
+# END - Migration Tasks
 
 - name: Create radarr directories
   file: "path={{item}} state=directory mode=0775 owner={{user}} group={{user}}"
@@ -65,11 +66,12 @@
       - "/opt/scripts:/scripts"
       - "/mnt:/mnt"
       - "/mnt/unionfs/Media/Movies:/movies"
+      - "/opt/sickbeard_mp4_automator:/sickbeard_mp4_automator"
 
 - name: Create and start container
   docker_container:
     name: radarr
-    image: hotio/suitarr:radarr
+    image: padic/radarr
     pull: yes
     published_ports:
       - "127.0.0.1:7878:7878"

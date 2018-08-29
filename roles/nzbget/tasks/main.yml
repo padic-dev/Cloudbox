@@ -1,8 +1,9 @@
 #########################################################################
 # Title:         Cloudbox: NZBGet Role                                  #
-# Author(s):     L3uddz, Desimaniac                                     #
+# Author(s):     L3uddz, Desimaniac, padic-dev                          #
 # URL:           https://github.com/cloudbox/cloudbox                   #
-# Docker Image:  hotio/suitarr                                          #
+# Fork:          https://github.com/padic-dev/cloudbox                  #
+# Docker Image:  padic/nzbget                                           #
 # --                                                                    #
 #         Part of the Cloudbox project: https://cloudbox.rocks          #
 #########################################################################
@@ -20,7 +21,7 @@
     name: nzbget
     state: absent
 
-# START - Suitarr Migration Tasks
+# START - Migration Tasks
 - name: Check folder exists
   stat:
     path: /opt/nzbget
@@ -50,7 +51,7 @@
     mv /opt/nzbget/NZBGet /opt/nzbget/app
     chown -R {{user}}:{{user}} /opt/nzbget
   when: (folder.stat.exists) and (subfolder1.stat.exists) and (not subfolder2.stat.exists)
-# END - Suitarr Migration Tasks
+# END - Migration Tasks
 
 - name: Create nzbget directories
   file: "path={{item}} state=directory mode=0775 owner={{user}} group={{user}}"
@@ -82,11 +83,12 @@
       - "/opt/nzbget:/config"
       - "/opt/scripts:/scripts"
       - "/mnt:/mnt"
+      - "/opt/sickbeard_mp4_automator:/sickbeard_mp4_automator"
 
 - name: Create and start container
   docker_container:
     name: nzbget
-    image: hotio/suitarr:nzbget
+    image: padic/nzbget
     pull: yes
     published_ports:
       - "127.0.0.1:6789:6789"
