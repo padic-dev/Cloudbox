@@ -71,7 +71,7 @@
 - name: Create and start container
   docker_container:
     name: sonarr
-    image: "padic/sonarr"
+    image: padic/sonarr:hotio
     pull: yes
     published_ports:
       - "127.0.0.1:8989:8989"

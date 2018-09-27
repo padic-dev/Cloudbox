@@ -88,7 +88,7 @@
 - name: Create and start container
   docker_container:
     name: nzbget
-    image: padic/nzbget
+    image: padic/nzbget:hotio
     pull: yes
     published_ports:
       - "127.0.0.1:6789:6789"
