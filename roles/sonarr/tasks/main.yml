@@ -5,7 +5,7 @@
 # Fork:          https://github.com/padic-dev/cloudbox                  #
 # Docker Image:  padic/sonarr                                           #
 # --                                                                    #
-#         Part of the Cloudbox project: https://cloudbox.rocks          #
+#         Part of the Cloudbox project: https://cloudbox.works          #
 #########################################################################
 #                   GNU General Public License v3.0                     #
 #########################################################################
@@ -80,6 +80,7 @@
       BACKUP: "no"
       PUID: "{{uid}}"
       PGID: "{{gid}}"
+      UMASK: 002
       MONO_TLS_PROVIDER: legacy
       VIRTUAL_HOST: "sonarr.{{domain}}"
       VIRTUAL_PORT: 8989
